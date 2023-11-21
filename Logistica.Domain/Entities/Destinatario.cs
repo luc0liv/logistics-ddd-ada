@@ -1,8 +1,8 @@
 ﻿public class Destinatario : BaseEntity
 {
     public string NomeDestinatario { get; set; }
-    public string EnderecoDestinatario { get; set; }
-    public string CepDestinatario {  get; set; }
+    public Endereco EnderecoDestinatario { get; set; }
+    public string CepDestinatario { get; set; }
 
-    private Produto IdProduto;
+    public Produto Produto { get; set; }
 }
