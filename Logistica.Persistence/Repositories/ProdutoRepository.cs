@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Logistica.Persistence.Repositories
-{
-    public class ProdutoRepository
+﻿public class ProdutoRepository : BaseRepository<Produto>, IProductRepository
     {
+        public ProdutoRepository(AppDbContext context) : base(context) {
+        
     }
-}
+
+    }
