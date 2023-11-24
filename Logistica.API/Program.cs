@@ -1,4 +1,7 @@
 
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,7 +14,26 @@ builder.Services.ConfigureCorsPolicy();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var openApiInfo = new OpenApiInfo();
+
+    openApiInfo.Title = "Fashion Trend";
+    openApiInfo.Description = "Logística";
+    openApiInfo.License = new OpenApiLicense
+    {
+        Name = "MIT",
+        Url = new Uri(@"http://www.mit.com/license")
+    };
+    openApiInfo.Contact = new OpenApiContact()
+    {
+        Name = "Luciana Cunha",
+        Email = "luoliveiradacunha@gmail.com",
+        Url = new Uri(@"https://github.com/luc0liv")
+    };
+
+    options.SwaggerDoc("v1", openApiInfo);
+});
 
 var app = builder.Build();
 
