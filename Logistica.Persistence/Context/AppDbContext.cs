@@ -6,6 +6,9 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Produto> Produtos { get; set; }
+    public DbSet<NotificacaoCompra> NotificacaoCompras { get; set; }
+    public DbSet<Endereco> Enderecos { get; set; }
+    public DbSet<Destinatario> Destinatarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

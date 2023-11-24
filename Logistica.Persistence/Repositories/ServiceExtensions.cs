@@ -27,5 +27,8 @@ public static class ServiceExtensions
         // escopo da aplicação fica aqui:
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IProductRepository, ProdutoRepository>();
+        services.AddScoped<INotificacaoCompraRepository, NotificacaoCompraRepository>();
+        services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+        services.AddScoped<IDestinatarioRepository, DestinatarioRepository>();
     }
 }
