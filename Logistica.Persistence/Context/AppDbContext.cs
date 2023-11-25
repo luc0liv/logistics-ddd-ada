@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         //modelBuilder.Entity<User>().Ignore(user => user.Perfil);
         //modelBuilder.Entity<frete>()
         //.HasOne(frete => frete.Destinatario) // quando possuir varios perfis

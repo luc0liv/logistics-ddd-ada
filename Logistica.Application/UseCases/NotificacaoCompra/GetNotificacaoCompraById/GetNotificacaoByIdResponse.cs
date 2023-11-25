@@ -1,6 +1,6 @@
-﻿public sealed record GetNotificacaoByIdResponse
+﻿public class GetNotificacaoByIdResponse
 {   
-    public readonly string Id;
+    public Guid Id;
     public Destinatario Destinatario { get; set; }
     public List<Produto> Produtos { get; set; }
 }

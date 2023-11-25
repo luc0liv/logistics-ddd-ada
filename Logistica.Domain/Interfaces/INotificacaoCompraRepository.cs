@@ -1,6 +1,5 @@
-﻿
-    public interface INotificacaoCompraRepository : IBaseRepository<NotificacaoCompra>
-    {
-
-    }
+﻿public interface INotificacaoCompraRepository : IBaseRepository<NotificacaoCompra>
+{
+    Task<NotificacaoCompra> GetById(Guid Id, CancellationToken cancellationToken);
+}
 
