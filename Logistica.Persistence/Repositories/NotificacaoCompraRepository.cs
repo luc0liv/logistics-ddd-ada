@@ -10,26 +10,47 @@ public class NotificacaoCompraRepository : BaseRepository<NotificacaoCompra>, IN
 
     public async Task<NotificacaoCompra> GetById(Guid Id, CancellationToken cancellationToken)
     {
-        Console.WriteLine("CHAMOU REPOSITORY");
-        return await _context.NotificacaoCompras
-            .FirstOrDefaultAsync(n => n.Id.Equals(Id), cancellationToken);
-    }
-
-    public List<GetNotificacaoResponse> GetNotificacoes()
-    {
-        var query = _context.NotificacaoCompras
+        var query = await _context.NotificacaoCompras
             .Join(_context.Destinatarios,
                 n => n.Destinatario.Id,
                 d => d.Id,
                 (n, d) => new { NotificacaoCompra = n, Destinatario = d })
-            .Select(result => new GetNotificacaoResponse
+            .Select(result => new NotificacaoCompra
             {
-                // Mapeie as propriedades conforme necessário
+                Id = result.NotificacaoCompra.Id,
+                Destinatario = new Destinatario
+                {
+                    Id = result.Destinatario.Id,
+                    NomeDestinatario = result.Destinatario.NomeDestinatario,
+                    CepDestinatario = result.Destinatario.CepDestinatario,
+                    EnderecoDestinatario = result.Destinatario.EnderecoDestinatario,
+                },
+                Produtos = result.NotificacaoCompra.Produtos
+            })
+            .FirstOrDefaultAsync(n => n.Id.Equals(Id), cancellationToken);
+        return query;
+    }
+
+    public async Task<List<NotificacaoCompra>> GetNotifications(CancellationToken cancellationToken)
+    {
+        var query = await _context.NotificacaoCompras
+            .Join(_context.Destinatarios,
+                n => n.Destinatario.Id,
+                d => d.Id,
+                (n, d) => new { NotificacaoCompra = n, Destinatario = d })
+            .Select(result => new NotificacaoCompra
+            {
                Id = result.NotificacaoCompra.Id,
-               Destinatario = result.NotificacaoCompra.Destinatario,
+               Destinatario = new Destinatario
+               {
+                   Id = result.Destinatario.Id,
+                   NomeDestinatario = result.Destinatario.NomeDestinatario,
+                   CepDestinatario = result.Destinatario.CepDestinatario,
+                   EnderecoDestinatario = result.Destinatario.EnderecoDestinatario,
+               },
                Produtos = result.NotificacaoCompra.Produtos
             })
-            .ToList();
+            .ToListAsync(cancellationToken);
 
         return query;
     }
