@@ -15,7 +15,6 @@ public sealed class GetNotificacaoByIdHandler : IRequestHandler<GetNotificacaoBy
 
     public async Task<GetNotificacaoByIdResponse> Handle(GetNotificacaoByIdRequest request, CancellationToken cancellationToken)
     {
-        Console.WriteLine("CHAMOU HANDLER");
         var notificacoes = await _NotificacaoRepository.GetById(request.Id, cancellationToken);
         return _mapper.Map<GetNotificacaoByIdResponse>(notificacoes);
     }
