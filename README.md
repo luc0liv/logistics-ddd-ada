@@ -1,2 +1,2 @@
-# Tech Comércio - Logística
+# Tech ComÃ©rcio - LogÃ­stica
 
