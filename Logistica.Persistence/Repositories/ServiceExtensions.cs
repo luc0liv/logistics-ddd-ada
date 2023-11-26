@@ -13,18 +13,14 @@ public static class ServiceExtensions
     {
         // recupera a string de conexão da camada de presentation /api
 
-        //var connectionString = configuration.GetConnectionString("Sqlite");
+        var connectionString = configuration.GetConnectionString("Sqlite");
 
         // define provedor do BD
 
         services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(configuration.GetConnectionString("Sqlite"))
-           .EnableSensitiveDataLogging()
-           .LogTo(Console.WriteLine, LogLevel.Information));
+            options.UseSqlite(connectionString));
 
-
-
-        // escopo da aplicação fica aqui:
+       // escopo da aplicação fica aqui:
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IProductRepository, ProdutoRepository>();
         services.AddScoped<INotificacaoCompraRepository, NotificacaoCompraRepository>();

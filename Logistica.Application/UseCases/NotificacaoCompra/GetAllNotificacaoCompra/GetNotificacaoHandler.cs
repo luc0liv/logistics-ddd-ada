@@ -15,7 +15,7 @@ public sealed class GetNotificacaoHandler : IRequestHandler<GetNotificacaoReques
 
     public async Task<List<GetNotificacaoResponse>> Handle(GetNotificacaoRequest request, CancellationToken cancellationToken)
     {
-        var notificacoes = await _NotificacaoRepository.GetAll(cancellationToken);
+        var notificacoes = await _NotificacaoRepository.GetNotifications(cancellationToken);
         return _mapper.Map<List<GetNotificacaoResponse>>(notificacoes);
     }
 }
