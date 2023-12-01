@@ -26,5 +26,6 @@ public static class ServiceExtensions
         services.AddScoped<INotificacaoCompraRepository, NotificacaoCompraRepository>();
         services.AddScoped<IEnderecoRepository, EnderecoRepository>();
         services.AddScoped<IDestinatarioRepository, DestinatarioRepository>();
+        services.AddScoped<IFreteRepository, FreteRepository>();
     }
 }
