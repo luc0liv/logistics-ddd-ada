@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Frete\" />
     <Folder Include="UseCases\Entrega\" />
     <Folder Include="UseCases\Produto\DeleteProduto\" />
     <Folder Include="UseCases\Produto\UpdateProduto\" />

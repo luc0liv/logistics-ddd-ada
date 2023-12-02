@@ -15,7 +15,14 @@ public sealed class GetNotificacaoByIdHandler : IRequestHandler<GetNotificacaoBy
 
     public async Task<GetNotificacaoByIdResponse> Handle(GetNotificacaoByIdRequest request, CancellationToken cancellationToken)
     {
+
         var notificacoes = await _NotificacaoRepository.GetById(request.Id, cancellationToken);
+
+        //if (notificacoes == null)
+        //{
+        //    return Task
+        //}
+ 
         return _mapper.Map<GetNotificacaoByIdResponse>(notificacoes);
     }
 }
