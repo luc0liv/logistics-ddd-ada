@@ -16,13 +16,13 @@ public sealed class GetFreteHandler : IRequestHandler<GetFreteRequest, GetFreteR
     public async Task<GetFreteResponse> Handle(GetFreteRequest request, CancellationToken cancellationToken)
     {
         var shipping = await _FreteRepository.CalculateShipment(request.Cep, cancellationToken);
-        var dataPrevista = shipping.DataPrevista.AddDays(7);
+        var expectedDate = shipping.DataPrevista;
 
-        var formattedFrete = new GetFreteResponse
+        GetFreteResponse formattedShipping = new GetFreteResponse
         {
             Valor = shipping.Valor,
-            DataPrevista = dataPrevista.ToString("dd/MM/yyyy"),
+            DataPrevista = expectedDate.ToString("dd/MM/yyyy"),
         };
-        return _mapper.Map<GetFreteResponse>(formattedFrete);
+        return _mapper.Map<GetFreteResponse>(formattedShipping);
     }
 }

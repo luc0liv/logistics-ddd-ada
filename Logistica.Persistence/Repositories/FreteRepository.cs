@@ -10,15 +10,13 @@ public class FreteRepository : BaseRepository<Frete>, IFreteRepository
 
     public Task<Frete> CalculateShipment(string cep, CancellationToken cancellationToken)
     {
+        Random randomValue = new Random();
+        // O cálculo de frete é apenas uma simulação
         Frete frete = new Frete()
         {
-            Valor = 20,
-            DataPrevista = DateTimeOffset.Now,
+            Valor = (decimal)(randomValue.Next(0, 100) * 0.25),
+            DataPrevista = DateTimeOffset.Now.AddDays(randomValue.Next(0, 14)),
         };
         return Task.FromResult(frete);
-        //var entityEntry = await _context.Fretes.AddAsync(frete);
-        //await _context.SaveChangesAsync(); // Salvar alterações no banco de dados
-
-        //return entityEntry.Entity;
     }
 }
